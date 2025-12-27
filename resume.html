@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vladyslav Skopenko - Resume</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 11pt;
+            line-height: 1.5;
+            color: #2c3e50;
+            background: #f0f0f0;
+        }
+        
+        .resume {
+            max-width: 210mm;
+            min-height: 297mm;
+            margin: 20px auto;
+            background: #ffffff;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            display: flex;
+        }
+        
+        .sidebar {
+            width: 6px;
+            background: #1a5276;
+            flex-shrink: 0;
+        }
+        
+        .content {
+            flex: 1;
+            padding: 40px 45px;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .name {
+            font-size: 28pt;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+        
+        .title {
+            font-size: 13pt;
+            color: #1a5276;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+        
+        .contact {
+            font-size: 9.5pt;
+            color: #666666;
+        }
+        
+        .contact a {
+            color: #1a5276;
+            text-decoration: none;
+        }
+        
+        .contact a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Sections */
+        .section {
+            margin-bottom: 22px;
+        }
+        
+        .section h2 {
+            font-size: 12pt;
+            font-weight: 600;
+            color: #1a5276;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #1a5276;
+        }
+        
+        /* Summary */
+        .summary-text {
+            text-align: justify;
+            color: #2c3e50;
+        }
+        
+        /* Experience */
+        .experience-item {
+            margin-bottom: 18px;
+        }
+        
+        .experience-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .exp-header {
+            margin-bottom: 8px;
+        }
+        
+        .exp-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+        
+        .position {
+            font-weight: 600;
+            font-size: 11pt;
+            color: #2c3e50;
+        }
+        
+        .period {
+            font-size: 10pt;
+            color: #666666;
+        }
+        
+        .exp-company {
+            font-size: 10pt;
+            color: #1a5276;
+            font-weight: 500;
+        }
+        
+        .achievements {
+            margin-left: 18px;
+            margin-top: 6px;
+        }
+        
+        .achievements li {
+            margin-bottom: 4px;
+            text-align: justify;
+        }
+        
+        /* Education */
+        .education-item {
+            margin-bottom: 12px;
+        }
+        
+        .edu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+        
+        .degree {
+            font-weight: 600;
+            font-size: 11pt;
+        }
+        
+        .school {
+            color: #1a5276;
+            font-size: 10pt;
+        }
+        
+        .edu-details {
+            font-size: 10pt;
+            color: #666666;
+            margin-top: 4px;
+        }
+        
+        /* Skills */
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            list-style: none;
+            gap: 8px 15px;
+        }
+        
+        .skills-list li {
+            position: relative;
+            padding-left: 12px;
+        }
+        
+        .skills-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #1a5276;
+            font-weight: bold;
+        }
+        
+        /* Languages */
+        .languages-list {
+            list-style: none;
+        }
+        
+        .languages-list li {
+            margin-bottom: 4px;
+        }
+        
+        /* Certifications */
+        .cert-list {
+            margin-left: 18px;
+        }
+        
+        .cert-list li {
+            margin-bottom: 4px;
+        }
+        
+        /* Projects */
+        .project-item {
+            margin-bottom: 10px;
+        }
+        
+        .project-item p {
+            font-size: 10pt;
+            margin-top: 3px;
+        }
+        
+        .project-item a {
+            color: #1a5276;
+            text-decoration: none;
+        }
+        
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .resume {
+                box-shadow: none;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="resume">
+        <div class="sidebar"></div>
+        <div class="content">
+            <header class="header">
+                <h1 class="name">Vladyslav Skopenko</h1>
+                <div class="title">Python Developer</div>
+                <div class="contact">Odesa, Ukraine &nbsp;•&nbsp; +380 63 193 40 48 &nbsp;•&nbsp; <a href="mailto:skopirka2k17@gmail.com">skopirka2k17@gmail.com</a> &nbsp;•&nbsp; <a href="https://www.linkedin.com/in/vladyslav-skopenko/" target="_blank">LinkedIn</a> &nbsp;•&nbsp; <a href="https://github.com/VladSkopenko" target="_blank">GitHub</a> &nbsp;•&nbsp; <a href="https://vladskopenko.github.io/" target="_blank">Portfolio</a></div>
+            </header>
+            
+            
+    <section class="section">
+        <h2>Summary</h2>
+        <p class="summary-text">Python Backend Developer with 2+ years of experience building scalable web applications. 
+        Proven track record as a top contributor (84% of codebase) on B2B platforms serving 2,000+ companies and 10,000+ users. 
+        Experienced in both small agile teams (3 people) and large cross-functional teams (20+ members). 
+        Strong expertise in FastAPI, async SQLAlchemy, PostgreSQL, and cloud deployments.</p>
+    </section>
+    
+            
+        <section class="section">
+            <h2>Experience</h2>
+            
+            <div class="experience-item">
+                <div class="exp-header">
+                    <div class="exp-title">
+                        <span class="position">Python Developer</span>
+                        <span class="period">03/2025 - Present</span>
+                    </div>
+                    <div class="exp-company">iCORN, Kyiv, Ukraine (Remote)</div>
+                </div>
+                <ul class="achievements">
+                    <li>Top contributor (84% of codebase) on B2B commodity trading platform serving 2,000+ companies and 10,000+ users</li>
+<li>Engineered universal OAuth 2.0 authentication (Google, LinkedIn, Meta), replacing Auth0 and saving $24K annually</li>
+<li>Built Dashboard analytics with 2,100+ lines of optimized SQL/CTE queries for complex aggregations and multi-currency calculations</li>
+<li>Developed Logistics module: transport management, waybill documents, driver tracking with Google Maps integration</li>
+<li>Implemented Auction system with orders, bidding, counter-offers, and templates functionality</li>
+<li>Created Document automation: PDF generation with digital signature verification, Excel parsing for bulk imports</li>
+<li>Designed 187 database migrations (80% ownership) with async SQLAlchemy 2.0 and query optimization</li>
+<li>Performance optimization on datasets with millions of records, N+1 query elimination, load testing</li>
+<li>Built real-time notifications (WebSocket), Telegram bot for logistics automation</li>
+<li>Integrations: Odoo ERP, S3 storage (boto3), Google Maps API, DigitalOcean deployment</li>
+<li>DevOps: Docker deployment, Prometheus monitoring, 5 background workers, CI/CD (GitHub/GitLab)</li>
+                </ul>
+            </div>
+            
+            <div class="experience-item">
+                <div class="exp-header">
+                    <div class="exp-title">
+                        <span class="position">Python Mentor</span>
+                        <span class="period">11/2024 - 01/2025</span>
+                    </div>
+                    <div class="exp-company">GoIT, Kyiv, Ukraine (Remote)</div>
+                </div>
+                <ul class="achievements">
+                    <li>Mentored students in Python programming, fostering a positive learning environment and encouraging technical growth</li>
+<li>Conducted thorough code reviews providing constructive feedback and ensuring high-quality code standards</li>
+<li>Offered technical consultations to clarify complex concepts and guide students through project challenges</li>
+                </ul>
+            </div>
+            
+            <div class="experience-item">
+                <div class="exp-header">
+                    <div class="exp-title">
+                        <span class="position">Python Developer</span>
+                        <span class="period">05/2024 - 08/2024</span>
+                    </div>
+                    <div class="exp-company">Aurveda, Ukraine (Remote, Contract)</div>
+                </div>
+                <ul class="achievements">
+                    <li>Built full-featured Telegram e-commerce bot using Aiogram, completely replacing traditional online store</li>
+<li>Implemented scheduled auto-posting system to multiple Telegram channels for marketing automation</li>
+<li>Developed admin panel for staff to manage and update products inventory in real-time</li>
+<li>Created customer support chat system using Telegram API for seamless user communication</li>
+<li>Integrated KeyCRM for order management, customer data sync, and business analytics</li>
+<li>Deployed on DigitalOcean with Docker, ensuring high availability and scalability</li>
+                </ul>
+            </div>
+            
+            <div class="experience-item">
+                <div class="exp-header">
+                    <div class="exp-title">
+                        <span class="position">Software Developer</span>
+                        <span class="period">03/2024 - Present</span>
+                    </div>
+                    <div class="exp-company">Tekra, Remote (Part-time)</div>
+                </div>
+                <ul class="achievements">
+                    <li>Developed desktop application using Python and PyQt library with efficient user interface</li>
+<li>Optimized multithreading, improving application performance and reducing data processing time</li>
+<li>Built automation bots for various tasks streamlining business processes</li>
+<li>Participated in frontend website development, ensuring fast and responsive user experience</li>
+<li>Built backend services using FastAPI, providing high-performance and scalable APIs</li>
+                </ul>
+            </div>
+            
+        </section>
+        
+            
+        <section class="section">
+            <h2>Education</h2>
+            
+            <div class="education-item">
+                <div class="edu-header">
+                    <span class="degree">Bachelor's degree, Finance and Banking</span>
+                    <span class="period">2017 - 2021</span>
+                </div>
+                <div class="school">Odesa National Economic University</div>
+                
+            </div>
+            
+        </section>
+        
+            
+        <section class="section">
+            <h2>Skills</h2>
+            <ul class="skills-list">
+                <li>Python 3.12</li><li>FastAPI</li><li>SQLAlchemy 2.0</li><li>PostgreSQL</li><li>Alembic</li><li>Pydantic v2</li><li>Docker</li><li>Docker Compose</li><li>WebSocket</li><li>Git</li><li>GitLab</li><li>GitHub</li><li>Aiogram</li><li>Postman</li><li>REST API</li><li>OAuth 2.0</li><li>DigitalOcean</li><li>S3 / boto3</li><li>Google Maps API</li><li>Prometheus</li><li>CI/CD</li><li>PyQt</li><li>Multithreading</li><li>Mentoring</li>
+            </ul>
+        </section>
+        
+            
+        <section class="section">
+            <h2>Languages</h2>
+            <ul class="languages-list">
+                <li><strong>Ukrainian</strong> — Native</li><li><strong>English</strong> — B1-B2 (Intermediate)</li>
+            </ul>
+        </section>
+        
+            
+        <section class="section">
+            <h2>Certifications</h2>
+            <ul class="cert-list">
+                <li>Python Developer — GoIT Academy, 2023 - 2024</li>
+            </ul>
+        </section>
+        
+            
+        </div>
+    </div>
+</body>
+</html>
