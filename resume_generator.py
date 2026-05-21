@@ -13,131 +13,117 @@ from pathlib import Path
 # ============================================
 
 RESUME_DATA = {
-    "name": "Vladyslav Skopenko",
-    "title": "Python Developer",
-    
+    "name": "Liudmyla Skopenko",
+    "title": "Frontend Developer",
+
     "contact": {
         "location": "Odesa, Ukraine",
-        "phone": "+380 63 193 40 48",
-        "email": "skopirka2k17@gmail.com",
-        "linkedin": "https://www.linkedin.com/in/vladyslav-skopenko/",
-        "github": "https://github.com/VladSkopenko",
-        "website": "https://vladskopenko.github.io/",
+        "phone": "+380 963 61 05 73",
+        "email": "luda.skopenko80@gmail.com",
+        "linkedin": "https://www.linkedin.com/in/liudmyla-skopenko/",
+        "github": "https://github.com/LudSkop",
+        "telegram": "https://t.me/Liud_skop"
     },
-    
+
     "summary": """
-        Python Backend Developer with 2+ years of experience building scalable web applications. 
-        Proven track record as a top contributor (84% of codebase) on B2B platforms serving 2,000+ companies and 10,000+ users. 
-        Experienced in both small agile teams (3 people) and large cross-functional teams (20+ members). 
-        Strong expertise in FastAPI, async SQLAlchemy, PostgreSQL, and cloud deployments.
-    """,
-    
+Frontend developer who creates modern web applications using Next, React and TypeScript. I have strong knowledge of HTML, CSS and JavaScript, and experience in developing responsive and cross-browser interfaces that are user-friendly and work correctly across different devices. I also have experience deploying projects on Vercel.
+I am interested in modern frontend development, improving web application performance and creating clear and user-friendly UX/UI.
+I am looking for a Junior Frontend Developer position and want to become part of a team where I can grow, improve my skills, and contribute to the development of the product and the company.
+""",
+
+    "skills": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "TypeScript",
+        "React",
+        "Next.js",
+        "Node.js",
+        "React Query",
+        "Axios",
+        "Git",
+        "GitHub",
+        "Postman",
+        "Figma",
+        "Vercel"
+       
+                    
+    ],
+
     "experience": [
-        {
-            "position": "Python Developer",
-            "company": "iCORN",
-            "location": "Kyiv, Ukraine (Remote)",
-            "period": "03/2025 - Present",
-            "achievements": [
-                "Top contributor (84% of codebase) on B2B commodity trading platform serving 2,000+ companies and 10,000+ users",
-                "Engineered universal OAuth 2.0 authentication (Google, LinkedIn, Meta), replacing Auth0 and saving $24K annually",
-                "Built Dashboard analytics with 2,100+ lines of optimized SQL/CTE queries for complex aggregations and multi-currency calculations",
-                "Developed Logistics module: transport management, waybill documents, driver tracking with Google Maps integration",
-                "Implemented Auction system with orders, bidding, counter-offers, and templates functionality",
-                "Created Document automation: PDF generation with digital signature verification, Excel parsing for bulk imports",
-                "Designed 187 database migrations (80% ownership) with async SQLAlchemy 2.0 and query optimization",
-                "Performance optimization on datasets with millions of records, N+1 query elimination, load testing",
-                "Built real-time notifications (WebSocket), Telegram bot for logistics automation",
-                "Integrations: Odoo ERP, S3 storage (boto3), Google Maps API, DigitalOcean deployment",
-                "DevOps: Docker deployment, Prometheus monitoring, 5 background workers, CI/CD (GitHub/GitLab)",
+       
+         {
+            "position": "Frontend Developer",
+            "company": "CoffeeJoy",
+            "location": "",
+            "period": "2025",
+            "project_link": "https://ludskop.github.io/CoffeeJoy/",
+            "achievements": [ "Developed a team-based web layout project (CoffeeJoy) using HTML and CSS. Collaborated with a team using Git and GitHub workflow. Implemented responsive and structured interface design. Technologies: HTML, CSS, JavaScript, Git, GitHub"
+            ]
+          
+        },
+          {
+            "position": "Frontend Developer",
+            "company": "PawFriends",
+            "location": "",
+            "period":  "2026",
+            "project_link": "https://ludskop.github.io/PawFriends/",
+            "achievements": ["Developed a responsive pet care platform (PawFriends) for exploring pets, adoption opportunities, and pet care information. Technologies: HTML, Vite, CSS, JavaScript. Implemented modern responsive UI and adaptive layout."
             ]
         },
         {
-            "position": "Python Mentor",
-            "company": "GoIT",
-            "location": "Kyiv, Ukraine (Remote)",
-            "period": "11/2024 - 01/2025",
-            "achievements": [
-                "Mentored students in Python programming, fostering a positive learning environment and encouraging technical growth",
-                "Conducted thorough code reviews providing constructive feedback and ensuring high-quality code standards",
-                "Offered technical consultations to clarify complex concepts and guide students through project challenges",
+            "position": "Frontend Developer",
+            "company": "Auth App",
+            "location": "",
+            "period": "2026",
+            "project_link": "https://09-auth-khaki-zeta.vercel.app",
+            "achievements": ["Authentication app with login, registration, protected routes and API integration. Technologies: HTML, CSS, JavaScript, TypeScript, React, Next.js, Axios,Vercel, Git, GitHub."
             ]
-        },
-        {
-            "position": "Python Developer",
-            "company": "Aurveda",
-            "location": "Ukraine (Remote, Contract)",
-            "period": "05/2024 - 08/2024",
-            "achievements": [
-                "Built full-featured Telegram e-commerce bot using Aiogram, completely replacing traditional online store",
-                "Implemented scheduled auto-posting system to multiple Telegram channels for marketing automation",
-                "Developed admin panel for staff to manage and update products inventory in real-time",
-                "Created customer support chat system using Telegram API for seamless user communication",
-                "Integrated KeyCRM for order management, customer data sync, and business analytics",
-                "Deployed on DigitalOcean with Docker, ensuring high availability and scalability",
-            ]
-        },
-        {
-            "position": "Software Developer",
-            "company": "Tekra",
-            "location": "Remote (Part-time)",
-            "period": "03/2024 - Present",
-            "achievements": [
-                "Developed desktop application using Python and PyQt library with efficient user interface",
-                "Optimized multithreading, improving application performance and reducing data processing time",
-                "Built automation bots for various tasks streamlining business processes",
-                "Participated in frontend website development, ensuring fast and responsive user experience",
-                "Built backend services using FastAPI, providing high-performance and scalable APIs",
-            ]
+
+            
         },
     ],
-    
+
+   "work_experience": [
+  {
+    "position": "Electronics Assembly Technician",
+    "company": "Novotek-Electro",
+    "location": "Odesa, Ukraine",
+    "period": "2011-2023",
+    "achievements": "Performed assembly, mounting, and soldering of electronic components and assemblies of radio-electronic devices. Worked with printed circuit boards and technical documentation, following schematics and engineering drawings. Ensured quality control of assembly processes, tested equipment functionality, and eliminated defects. Complied with production standards and safety regulations."
+  }
+],
+
+
     "education": [
         {
-            "degree": "Bachelor's degree, Finance and Banking",
-            "school": "Odesa National Economic University",
-            "period": "2017 - 2021",
-            "details": "",
+            "degree": "Bachelor's degree, Zootechnics",
+            "school": "Myhiia Agricultural College",
+            "period": "1995 - 1999",
+            "details": ""
         },
+         {
+            "degree": "Fullstack developer",
+            "school": "IT School GolT",
+            "period": "2025 - 2026",
+            "details": ""
+        },
+        
+        
+       
     ],
-    
-    "skills": [
-        "Python 3.12",
-        "FastAPI",
-        "SQLAlchemy 2.0",
-        "PostgreSQL",
-        "Alembic",
-        "Pydantic v2",
-        "Docker",
-        "Docker Compose",
-        "WebSocket",
-        "Git",
-        "GitLab",
-        "GitHub",
-        "Aiogram",
-        "Postman",
-        "REST API",
-        "OAuth 2.0",
-        "DigitalOcean",
-        "S3 / boto3",
-        "Google Maps API",
-        "Prometheus",
-        "CI/CD",
-        "PyQt",
-        "Multithreading",
-        "Mentoring",
-    ],
-    
+
+
     "languages": [
-        {"language": "Ukrainian", "level": "Native"},
-        {"language": "English", "level": "B1-B2 (Intermediate)"},
+        {"language": "English", "level": "Elementary"},
+        {"language": "Ukrainian", "level": "Native"}
+        
     ],
-    
-    "certifications": [
-        "Python Developer — GoIT Academy, 2023 - 2024",
-    ],
-    
-    "projects": [],
+
+    "projects": [
+       
+       
+    ]
 }
 
 # ============================================
@@ -173,8 +159,8 @@ def generate_html(data: dict, style: dict) -> str:
         contact_parts.append(f'<a href="{c["linkedin"]}" target="_blank">LinkedIn</a>')
     if c.get("github"):
         contact_parts.append(f'<a href="{c["github"]}" target="_blank">GitHub</a>')
-    if c.get("website"):
-        contact_parts.append(f'<a href="{c["website"]}" target="_blank">Portfolio</a>')
+    if c.get("telegram"):
+        contact_parts.append(f'<a href="{c["telegram"]}" target="_blank">Telegram</a>')
     
     contact_html = ' &nbsp;•&nbsp; '.join(contact_parts)
     
@@ -185,13 +171,30 @@ def generate_html(data: dict, style: dict) -> str:
         <p class="summary-text">{data['summary'].strip()}</p>
     </section>
     """ if data.get("summary") and data["summary"].strip() else ""
+
+      # Skills
+    skills_html = ""
+    if data.get("skills"):
+        skills_list = "".join([f"<li>{skill}</li>" for skill in data["skills"]])
+        skills_html = f"""
+        <section class="section">
+            <h2>Skills</h2>
+            <ul class="skills-list">
+                {skills_list}
+            </ul>
+        </section>
+        """
     
-    # Experience
+    
+   
+  # Experience
     experience_html = ""
     if data.get("experience"):
         exp_items = ""
         for exp in data["experience"]:
             achievements = "\n".join([f"<li>{a}</li>" for a in exp.get("achievements", [])])
+            project_link = exp.get("project_link", "")
+            
             exp_items += f"""
             <div class="experience-item">
                 <div class="exp-header">
@@ -199,20 +202,57 @@ def generate_html(data: dict, style: dict) -> str:
                         <span class="position">{exp['position']}</span>
                         <span class="period">{exp['period']}</span>
                     </div>
-                    <div class="exp-company">{exp['company']}, {exp['location']}</div>
+                    <div class="exp-company">{exp['company']} {exp['location']}</div>
                 </div>
                 <ul class="achievements">
-                    {achievements}
+{achievements}
                 </ul>
+                {f'<a href="{project_link}" target="_blank" class="project-link">View Project →</a>' if project_link else ''}
             </div>
             """
         experience_html = f"""
         <section class="section">
-            <h2>Experience</h2>
-            {exp_items}
+            <h2>Project Experience</h2>
+{exp_items}
         </section>
         """
-    
+  
+   # Work Experience
+    work_experience_html = ""
+    if data.get("work_experience"):
+        work_items = ""
+        for work in data["work_experience"]:
+            # Якщо achievements - це строка, розділяємо на речення
+            achievements_text = work.get("achievements", "")
+            if isinstance(achievements_text, str):
+                # Розділяємо строку на речення (точка, крапка-кома)
+                sentences = [s.strip() for s in achievements_text.split('.') if s.strip()]
+                achievements = "\n".join([f"<li>{s}.</li>" for s in sentences])
+            else:
+                # Якщо це список
+                achievements = "\n".join([f"<li>{a}</li>" for a in achievements_text])
+            
+            work_items += f"""
+            <div class="experience-item">
+                <div class="exp-header">
+                    <div class="exp-title">
+                        <span class="position">{work['position']}</span>
+                        <span class="period">{work['period']}</span>
+                    </div>
+                    <div class="exp-company">{work['company']}, {work['location']}</div>
+                </div>
+                <ul class="achievements">
+{achievements}
+                </ul>
+            </div>
+            """
+        work_experience_html = f"""
+        <section class="section">
+            <h2>Work Experience</h2>
+{work_items}
+        </section>
+        """ 
+
     # Education
     education_html = ""
     if data.get("education"):
@@ -236,19 +276,7 @@ def generate_html(data: dict, style: dict) -> str:
         </section>
         """
     
-    # Skills
-    skills_html = ""
-    if data.get("skills"):
-        skills_list = "".join([f"<li>{skill}</li>" for skill in data["skills"]])
-        skills_html = f"""
-        <section class="section">
-            <h2>Skills</h2>
-            <ul class="skills-list">
-                {skills_list}
-            </ul>
-        </section>
-        """
-    
+  
     # Languages
     languages_html = ""
     if data.get("languages"):
@@ -366,7 +394,7 @@ def generate_html(data: dict, style: dict) -> str:
         
         .contact {{
             font-size: 9.5pt;
-            color: {style['light_text']};
+            color: {style['accent_color']};
         }}
         
         .contact a {{
@@ -526,6 +554,19 @@ def generate_html(data: dict, style: dict) -> str:
             color: {style['accent_color']};
             text-decoration: none;
         }}
+         /* Project Link */
+        .project-link {{
+            display: inline-block;
+            margin-top: 10px;
+            color: {style['accent_color']};
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 10pt;
+        }}
+        
+        .project-link:hover {{
+            text-decoration: underline;
+        }}
         
         /* Print styles */
         @media print {{
@@ -551,10 +592,11 @@ def generate_html(data: dict, style: dict) -> str:
             </header>
             
             {summary_html}
-            {experience_html}
-            {education_html}
             {skills_html}
             {languages_html}
+            {experience_html}
+            {work_experience_html}
+            {education_html}
             {certs_html}
             {projects_html}
         </div>
