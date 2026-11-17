@@ -1,6 +1,6 @@
 # 📄 Resume Generator
 
-A simple Python script to generate beautiful, professional resumes in HTML format. Easy to customize and export to PDF.
+A simple Python script that renders single-column, ATS-friendly resumes to HTML and PDF. One data file per language, easy to customize.
 
 ![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
@@ -11,8 +11,8 @@ A simple Python script to generate beautiful, professional resumes in HTML forma
 
 ## ✨ Features
 
-- 🎨 Clean, minimalist design with customizable colors
-- 📱 A4 paper size, print-ready
+- 🎨 Clean single-column layout that ATS parsers read in order: standard section names, no tables or sidebars
+- 📱 A4 paper size, print-ready, flows onto a second page when needed
 - 🔗 Clickable links (email, LinkedIn, GitHub, etc.)
 - 📝 Multiple sections: Summary, Experience, Education, Skills, Languages, Certifications, Projects
 - 🖨️ Easy PDF export via browser print function
@@ -29,92 +29,35 @@ cd resume-generator
 
 ### 2. Edit your data
 
-Open `resume_generator.py` and fill in your information in the `RESUME_DATA` dictionary:
+Each resume variant is a Python file in `variants/` that defines a `RESUME_DATA` dictionary:
+`variants/en.py` and `variants/uk.py`. Shared parts (contacts, jobs, education, certifications) live in
+`variants/_common.py`; files starting with `_` are not built. Copy a variant to add a new one.
 
-```python
-RESUME_DATA = {
-    "name": "Your Name",
-    "title": "Your Job Title",
-    
-    "contact": {
-        "location": "City, Country",
-        "phone": "+1 234 567 8900",
-        "email": "your.email@example.com",
-        "linkedin": "https://linkedin.com/in/yourprofile",
-        "github": "https://github.com/yourusername",
-        "website": "",  # leave empty if not needed
-    },
-    
-    "summary": """
-        Your professional summary here. 2-4 sentences about your 
-        experience, skills, and what you're looking for.
-    """,
-    
-    "experience": [
-        {
-            "position": "Job Title",
-            "company": "Company Name",
-            "location": "City, Country",
-            "period": "01/2022 - Present",
-            "achievements": [
-                "Achievement 1 with metrics and results",
-                "Achievement 2 showing your impact",
-                "Achievement 3 with specific technologies used",
-            ]
-        },
-        # Add more positions...
-    ],
-    
-    "education": [
-        {
-            "degree": "Degree, Major",
-            "school": "University Name",
-            "period": "2018 - 2022",
-            "details": "",  # GPA, honors, etc. (optional)
-        },
-    ],
-    
-    "skills": [
-        "Python", "JavaScript", "React", "SQL", "Docker", "Git",
-        # Add your skills...
-    ],
-    
-    "languages": [
-        {"language": "English", "level": "Native"},
-        {"language": "Spanish", "level": "B2 (Upper-Intermediate)"},
-    ],
-    
-    "certifications": [
-        "AWS Certified Solutions Architect, 2023",
-        # Add your certifications...
-    ],
-    
-    "projects": [
-        # Optional - add personal projects
-        # {
-        #     "name": "Project Name",
-        #     "description": "Brief description",
-        #     "link": "https://github.com/..."
-        # },
-    ],
-}
-```
+Supported keys: `lang` (`en` or `uk`, sets section titles), `file_name`, `name`, `title`, `contact`
+(`location`, `phone`, `email`, `linkedin`, `github`, `website`, `telegram`), `summary`, `skills`
+(a list, or a dict of groups), `experience`, `extra_experience` (one-line entries), `projects`
+(`name`, `period`, `stack`, `description`, `links` as `{"text", "url"}`), `education`,
+`certifications` (plain strings or `{"name", "issuer", "date", "id", "link", "link_text"}`),
+`languages`, `talks` (dicts or plain strings). Sections render in that order, one column.
 
 ### 3. Generate your resume
 
 ```bash
-python resume_generator.py
+python resume_generator.py               # build every variant into output/
+python resume_generator.py en            # build one variant and open it in the browser
+python resume_generator.py --pdf         # also export PDFs with headless Google Chrome
 ```
-
-The script will:
-- Generate `resume.html` in the same directory
-- Automatically open it in your default browser
 
 ### 4. Export to PDF
 
-1. In your browser, press `Ctrl+P` (Windows/Linux) or `Cmd+P` (Mac)
-2. Select **"Save as PDF"** as the destination
-3. Click **Save**
+With `--pdf` the script prints every variant to an A4 PDF next to its HTML. Without Chrome,
+open the HTML, press `Cmd+P` (Mac) or `Ctrl+P` (Windows/Linux) and choose **Save as PDF**.
+
+### 5. Run the tests
+
+```bash
+python -m unittest test_resume_generator
+```
 
 ## 🎨 Customization
 
@@ -124,12 +67,12 @@ Edit the `STYLE_CONFIG` dictionary to customize the appearance:
 
 ```python
 STYLE_CONFIG = {
-    "accent_color": "#1a5276",      # Sidebar and headings color
-    "text_color": "#2c3e50",        # Main text color
-    "light_text": "#666666",        # Secondary text color
-    "background": "#ffffff",        # Background color
-    "sidebar_width": "6px",         # Left sidebar width
-    "font_family": "'Segoe UI', 'Roboto', Arial, sans-serif",
+    "accent_color": "#1a5276",      # Headings and links
+    "text_color": "#1f2933",        # Main text color
+    "light_text": "#5f6b7a",        # Secondary text color
+    "rule_color": "#dde3ea",        # Section dividers
+    "background": "#ffffff",        # Page background
+    "font_family": "Arial, 'Helvetica Neue', Helvetica, sans-serif",
 }
 ```
 
@@ -164,9 +107,14 @@ STYLE_CONFIG = {
 
 ```
 resume-generator/
-├── resume_generator.py    # Main script with your data
-├── resume.html           # Generated resume (after running script)
-└── README.md             # This file
+├── resume_generator.py        # Template, rendering and CLI
+├── test_resume_generator.py   # Tests (python -m unittest)
+├── variants/
+│   ├── _common.py             # Shared data: contacts, jobs, education, certifications
+│   ├── en.py                  # English resume
+│   └── uk.py                  # Ukrainian resume
+├── output/                    # Generated HTML and PDF files
+└── README.md
 ```
 
 ## 🤝 Contributing
