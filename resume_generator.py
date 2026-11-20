@@ -22,11 +22,12 @@ ROOT = Path(__file__).resolve().parent
 VARIANTS_DIR = ROOT / "variants"
 OUTPUT_DIR = ROOT / "output"
 
+# Black and white only: recruiters print resumes and reviewers flag any color.
 STYLE_CONFIG = {
-    "accent_color": "#1a5276",
-    "text_color": "#1f2933",
-    "light_text": "#5f6b7a",
-    "rule_color": "#dde3ea",
+    "accent_color": "#000000",
+    "text_color": "#000000",
+    "light_text": "#000000",
+    "rule_color": "#000000",
     "background": "#ffffff",
     "font_family": "Arial, 'Helvetica Neue', Helvetica, sans-serif",
 }
@@ -72,8 +73,12 @@ def _section(title: str, body: str) -> str:
     return f'<section class="section"><h2>{title}</h2>{body}</section>'
 
 
+def _link(url: str) -> str:
+    return f'<a href="{url}">{_readable_url(url)}</a>'
+
+
 def _links(items: list) -> str:
-    return " · ".join(f'<a href="{item["url"]}">{item.get("text") or _readable_url(item["url"])}</a>' for item in items)
+    return " · ".join(f'{item["text"]}: {_link(item["url"])}' if item.get("text") else _link(item["url"]) for item in items)
 
 
 def render_contacts(contact: dict) -> str:
@@ -139,7 +144,10 @@ def render_projects(items: list, label: str) -> str:
         meta = " · ".join(part for part in (proj.get("period"), proj.get("stack")) if part)
         head = f'<div class="row"><span class="project-name">{proj["name"]}</span><span class="period">{meta}</span></div>'
         links_html = f'<p class="project-links">{_links(links)}</p>' if links else ""
-        blocks.append(f'<div class="project">{head}<p>{proj["description"]}</p>{links_html}</div>')
+        description = f'<p>{proj["description"]}</p>' if proj.get("description") else ""
+        bullets = "".join(f"<li>{bullet}</li>" for bullet in proj.get("bullets", []))
+        bullets_html = f'<ul class="bullets">{bullets}</ul>' if bullets else ""
+        blocks.append(f'<div class="project">{head}{description}{bullets_html}{links_html}</div>')
     return _section(label, "".join(blocks))
 
 
@@ -166,7 +174,7 @@ def render_certifications(items: list, label: str) -> str:
             lines.append(f"<li>{item}</li>")
             continue
         meta = ", ".join(part for part in (item.get("issuer"), item.get("date"), item.get("id")) if part)
-        link = f' · <a href="{item["link"]}">{item.get("link_text", "link")}</a>' if item.get("link") else ""
+        link = f" · {_link(item['link'])}" if item.get("link") else ""
         lines.append(f'<li><strong>{item["name"]}</strong> — {meta}{link}</li>')
     return _section(label, f'<ul class="plain">{"".join(lines)}</ul>')
 
@@ -188,7 +196,7 @@ def render_talks(talks: list, label: str) -> str:
             continue
         meta = " · ".join(part for part in (talk.get("event"), talk.get("date")) if part)
         if talk.get("link"):
-            meta += f' · <a href="{talk["link"]}">{talk.get("link_text", "link")}</a>'
+            meta += f" · {_link(talk['link'])}"
         description = f'<p class="talk-desc">{talk["description"]}</p>' if talk.get("description") else ""
         blocks.append(
             f'<div class="talk"><div class="row"><span class="talk-title">{talk["title"]}</span>'
@@ -207,33 +215,33 @@ body {{
     font-size: 9.2pt;
     line-height: 1.3;
     color: {s['text_color']};
-    background: #e9edf1;
+    background: {s['background']};
 }}
-a {{ color: {s['accent_color']}; text-decoration: none; }}
+a {{ color: {s['accent_color']}; text-decoration: none; white-space: nowrap; }}
 .resume {{
     width: 210mm;
     min-height: 297mm;
     margin: 24px auto;
     padding: 10mm 12mm 10mm 12mm;
     background: {s['background']};
-    box-shadow: 0 2px 24px rgba(15, 23, 42, 0.12);
+    border: 1px solid {s['rule_color']};
 }}
 .header {{ padding-bottom: 2.4mm; margin-bottom: 2.8mm; border-bottom: 1.5px solid {s['accent_color']}; }}
 .name {{ font-size: 20pt; font-weight: 700; line-height: 1.1; }}
 .title {{ font-size: 11pt; font-weight: 700; color: {s['accent_color']}; margin-top: 1.2mm; }}
 .contacts {{ font-size: 8.6pt; color: {s['light_text']}; margin-top: 1.8mm; line-height: 1.55; }}
 .contacts a, .contacts span {{ white-space: nowrap; }}
-.sep {{ color: #b7c1cc; margin: 0 0.5mm; }}
+.sep {{ margin: 0 0.5mm; }}
 .section {{ margin-bottom: 2.6mm; }}
 .section h2 {{
     font-size: 9pt;
     font-weight: 700;
     color: {s['accent_color']};
     text-transform: uppercase;
-    letter-spacing: 0.12em;
     padding-bottom: 0.8mm;
     margin-bottom: 1.5mm;
     border-bottom: 1px solid {s['rule_color']};
+    break-after: avoid;
 }}
 .summary {{ font-size: 9.2pt; }}
 .skill-row {{ margin-bottom: 0.6mm; }}
@@ -247,11 +255,10 @@ a {{ color: {s['accent_color']}; text-decoration: none; }}
 .exp-desc {{ font-size: 9pt; color: {s['light_text']}; margin-top: 0.4mm; }}
 .bullets {{ margin: 1.1mm 0 0 4mm; }}
 .bullets li {{ margin-bottom: 0.5mm; padding-left: 0.5mm; }}
-.bullets li::marker {{ color: {s['accent_color']}; }}
 .extra {{ list-style: none; margin-top: 1.2mm; }}
 .extra li {{ margin-bottom: 0.6mm; }}
 .project p {{ margin-top: 0.4mm; }}
-.project-links {{ font-size: 8.8pt; }}
+.project-links {{ font-size: 8.8pt; margin-top: 0.4mm; }}
 .school {{ font-size: 9pt; color: {s['accent_color']}; }}
 .edu-details {{ font-size: 8.8pt; color: {s['light_text']}; }}
 .plain {{ margin-left: 4mm; }}
@@ -259,7 +266,7 @@ a {{ color: {s['accent_color']}; text-decoration: none; }}
 .talk-desc, .talk-note {{ margin-top: 0.3mm; }}
 @media print {{
     body {{ background: #ffffff; }}
-    .resume {{ width: auto; min-height: 0; margin: 0; padding: 0; box-shadow: none; }}
+    .resume {{ width: auto; min-height: 0; margin: 0; padding: 0; border: none; }}
 }}
 """
 
@@ -303,6 +310,14 @@ def generate_html(data: dict, style: dict) -> str:
 """
 
 
+def expand_headlines(data: dict) -> list[dict]:
+    """One resume per headline: the content stays the same, the title and the file name change."""
+    headlines = data.get("headlines")
+    if not headlines:
+        return [data]
+    return [{**data, "title": title, "file_name": f"{data['file_name']}_{slug}"} for slug, title in headlines.items()]
+
+
 def list_variants() -> list[str]:
     return sorted(path.stem for path in VARIANTS_DIR.glob("*.py") if not path.stem.startswith("_"))
 
@@ -344,14 +359,14 @@ def build(names: list[str], out_dir: Path = OUTPUT_DIR, pdf: bool = False) -> li
         print("Google Chrome not found: PDFs skipped. Open the HTML in a browser and print it to PDF.")
     built = []
     for name in names:
-        data = load_variant(name)
-        html_path = out_dir / f"{data['file_name']}.html"
-        html_path.write_text(generate_html(data, STYLE_CONFIG), encoding="utf-8")
-        built.append(html_path)
-        if chrome:
-            pdf_path = html_path.with_suffix(".pdf")
-            export_pdf(html_path, pdf_path, chrome)
-            built.append(pdf_path)
+        for data in expand_headlines(load_variant(name)):
+            html_path = out_dir / f"{data['file_name']}.html"
+            html_path.write_text(generate_html(data, STYLE_CONFIG), encoding="utf-8")
+            built.append(html_path)
+            if chrome:
+                pdf_path = html_path.with_suffix(".pdf")
+                export_pdf(html_path, pdf_path, chrome)
+                built.append(pdf_path)
     return built
 
 
@@ -370,7 +385,7 @@ def main(argv: list[str] | None = None) -> None:
     built = build(names, pdf=args.pdf)
     for path in built:
         print(f"  {path.relative_to(ROOT)}")
-    if len(names) == 1:
+    if len(names) == 1 and len(built) == 1:
         webbrowser.open(built[0].resolve().as_uri())
 
 
