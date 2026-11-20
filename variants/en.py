@@ -1,91 +1,108 @@
 from variants._common import (
-    BOT_ALLERT_URL, CERTIFICATIONS_EN, CONTACT_EN, DRIVER_BOT_URL, EDUCATION_EN, EXTRA_EN, INBULK_EN, LANGUAGES_EN,
+    BOT_ALLERT_URL, CERTIFICATIONS_EN, CONTACT_EN, DRIVER_BOT_URL, EDUCATION_EN, INBULK_EN, LANGUAGES_EN,
     NAME, PRESS_URL, SHOWCASE_API_URL, SHOWCASE_GRAFANA_URL, SHOWCASE_REPO_URL, TALK_EN, TEKRA_EN,
 )
 
+# Wording follows the terms Python backend vacancies on Djinni and DOU use (11/2026); numbers only where they show
+# a result.
+INBULK_ACHIEVEMENTS = [
+    "<strong>Performance:</strong> waybill PDF download cut from ~10 s to 0.2 s and the file from ~1 MB to under "
+    "300 KB: one shared font subset, whole-body responses instead of streaming, S3 I/O moved off the asyncio event loop.",
+    "<strong>Logistics domain, main author:</strong> split deliveries out of deals into their own domain model and "
+    "migrated live PostgreSQL data with reversible Alembic migrations; truck and sea shipments, waybills, VAT, a "
+    "registry of 13,754 world ports; drivers get a Telegram invite to the terminal gate instead of a guard searching "
+    f"the parking lot (<a href='{DRIVER_BOT_URL}'>t.me/inbulk_drivers_bot</a>).",
+    "<strong>LLM document processing:</strong> an LLM (OpenAI API, structured outputs) reads scanned port documents "
+    "and rule-based code calculates waiting time and penalties (laytime and demurrage), checked by an evaluation "
+    "script; vessel forms filled from certificate PDFs; tool calling for the team's LangChain AI assistant.",
+    "<strong>Market price data on n8n:</strong> n8n workflows collect prices from grain marketplaces, a trader's "
+    "price list and Telegram channels, normalize them (LLM for free text and photos, NBU exchange rates) and feed a "
+    "public REST API of prices by region and a daily market summary for the team.",
+    "<strong>Auth and security:</strong> in-house OAuth 2.0 (Google, LinkedIn) with JWT sessions; WebSocket auth "
+    "moved to single-use 30-second tickets, so access tokens no longer land in proxy and CDN logs.",
+]
+SPEC_BULLET = (
+    "<strong>AI-assisted development:</strong> introduced a team process where AI coding agents (Claude Code) write "
+    "code from a written spec, tests come first and every change passes code review; reviews stopped defects before "
+    "release, such as deals whose penalties could never be calculated."
+)
+SUMMARY_HEAD = (
+    "Python backend developer at INBULK, a B2B grain-trading and logistics platform, from early stage to production. "
+)
+SUMMARY_TAIL = (
+    "Ships with Docker and CI/CD on GitHub Actions, shown end to end on a public showcase project. A finance degree "
+    "helps with invoices, VAT and multi-currency. "
+)
+
+STACK_LINE = "FastAPI, PostgreSQL, LLM integrations, CI/CD"
+
 RESUME_DATA = {
     "lang": "en",
-    "file_name": "Vladyslav_Skopenko_CV",
+    "file_name": "Vladyslav_Skopenko",
     "name": NAME,
-    "title": "Python Backend Engineer · FastAPI, PostgreSQL, LLM integrations, CI/CD & Cloud",
+    # One PDF per headline, titles as Djinni and DOU vacancies name the role; the content is the same.
+    "headlines": {
+        "Python_Developer": f"Python Developer · {STACK_LINE}",
+        "Python_Backend_Developer": f"Python Backend Developer · {STACK_LINE}",
+        "Backend_Developer_Python": f"Backend Developer (Python) · {STACK_LINE}",
+        "Python_AI_Developer": "Python Developer (AI / LLM) · OpenAI API, LangChain, FastAPI, PostgreSQL",
+        "AI_Automation_Developer": "AI Automation Developer · Python, n8n, LLM, FastAPI",
+    },
     "contact": CONTACT_EN,
     "summary": (
-        "Python backend engineer with 2.5+ years of commercial experience. At INBULK, a B2B grain-trading and "
-        "logistics platform, from early stage to production: top contributor by commits and code (35% of all "
-        "commits). Owns the logistics domain (deliveries, truck and vessel voyages, waybills, laytime), the document "
-        "pipelines and the market price data, with LLM features inside. Runs delivery end to end on a public "
-        "showcase: GitHub Actions CI/CD, Docker images promoted by digest, Terraform on Oracle Cloud, Grafana. "
-        "A finance degree helps with invoices, VAT and multi-currency. Works spec-first with AI coding agents and "
-        "writes tests before code."
+        SUMMARY_HEAD
+        + "Builds REST APIs on FastAPI, PostgreSQL and asyncio, and LLM features on the OpenAI API with structured "
+        "outputs, tool calling and evaluation. Main author of the logistics domain, document processing and market "
+        "price data. "
+        + SUMMARY_TAIL
+        + "Works with AI coding agents under code review and tests first, so quality does not depend on who writes "
+        "the code."
     ),
     "skills": {
-        "Backend": ["Python", "FastAPI", "Pydantic v2", "SQLAlchemy 2.0 (async)", "Alembic", "REST API", "WebSocket",
-                    "OAuth 2.0", "JWT", "background workers", "pytest", "TDD"],
-        "Databases and data": ["PostgreSQL (CTE, JSONB, query optimization)", "SQL analytics", "PDF and Excel pipelines",
-                               "S3 / Object Storage"],
-        "AI / LLM": ["OpenAI API", "LangChain (tool calling)", "structured extraction", "eval harnesses", "prompt design",
-                     "Claude Code", "BMAD", "spec-driven development"],
-        "CI/CD and cloud": ["GitHub Actions", "Docker (multi-stage)", "Docker Compose", "GHCR", "Trivy", "Terraform",
-                            "Oracle Cloud (OCI)", "cloud-init", "Caddy", "nginx", "Tailscale", "Grafana", "n8n"],
-        "Code quality": ["ruff", "mypy", "import-linter", "ADRs", "Git", "code review"],
-        "Integrations": ["Telegram bots (aiogram, Telethon)", "Google Maps API", "Slack", "Postman"],
-        "Frontend": ["React", "TypeScript (fixes in the web app)"],
+        "Backend": ["Python", "FastAPI", "Django", "REST API", "asyncio", "SQLAlchemy 2.0 (async)", "Alembic",
+                    "Pydantic v2", "WebSocket", "OAuth 2.0", "JWT", "pytest", "TDD", "Git"],
+        "Databases": ["PostgreSQL (CTE, JSONB, query optimization)", "SQL", "Redis", "S3 / Object Storage",
+                      "PDF and Excel processing"],
+        "AI / LLM": ["LLM", "OpenAI API", "LangChain", "tool calling", "structured outputs", "prompt engineering",
+                     "prompt design", "LLM evaluation", "AI agents", "AI coding tools (Claude Code)"],
+        "CI/CD and cloud": ["GitHub Actions", "Docker (multi-stage)", "Docker Compose", "Terraform",
+                            "Oracle Cloud (OCI)", "Linux", "nginx", "Prometheus", "Grafana"],
+        "Code quality": ["code review", "ruff", "mypy"],
+        "Automation and integrations": ["n8n", "Telegram bots (aiogram, Telethon)", "Google Maps API"],
     },
     "experience": [
         {
             **INBULK_EN,
-            "achievements": [
-                "<strong>Logistics domain end to end:</strong> deliveries, truck voyages with weighing, vessel voyages and "
-                "nominations, laytime and demurrage; PDF waybills (TTN), Excel import, S3 storage. "
-                f"A <a href='{DRIVER_BOT_URL}'>Telegram bot</a> through which drivers report their trips instead of calling dispatchers.",
-                "<strong>Deal execution and terminals:</strong> the flow after a deal is closed: counter offers with deadlines and "
-                "extensions, settlement and prepayment, VAT rates for multi-quality contracts, IBAN handling, disputed payments, "
-                "two-sided closing, shipment document drafts shared through chat with notifications; order rules such as "
-                "auto-stopping a multi-order once its volume is sold out and allowing Fixed Price only where the incoterm fits; "
-                "terminal appointments with lab checks, quality sampling and Excel registries; ports reference data with admin endpoints.",
-                "<strong>Data model:</strong> async SQLAlchemy 2.0 models and more than half of the ~550 Alembic migrations, "
-                "including a refactor that moved logistics data out of deals into a dedicated delivery aggregate, "
-                "so deals and deliveries evolve independently.",
-                "<strong>LLM document features:</strong> NOR and SOF port documents parsed by an LLM into typed schemas and "
-                "turned by a deterministic builder into the laytime timeline, verified by an eval harness against reference "
-                "voyages; vessel certificates extracted into validated Pydantic models; domain tools for the LangChain "
-                "tool-calling assistant on OpenAI.",
-                "<strong>Market price pipeline on n8n:</strong> 10 workflows on Data Tables that scrape three grain marketplaces and "
-                "Telegram channels, normalize offers (LLM for free-text Telegram posts, NBU exchange rates), post a Slack digest "
-                "and a “market today” summary to the staff group and feed the backend's public price aggregations; Code nodes "
-                "kept as JavaScript files with 270+ node tests and golden fixtures, and a generator that builds the workflow JSON from them.",
-                "<strong>Analytics:</strong> warehouse stocks and dashboards on PostgreSQL CTE and JSONB queries with "
-                "multi-currency totals; quality of each delivery precomputed by a background worker; buy and sell product charts "
-                "with class and protein filters.",
-                "<strong>Performance:</strong> cut waybill download from ~10 s to 0.2 s by dropping line-by-line streaming of "
-                "in-memory PDFs, sharing one 140 KB font subset and rendering off the event loop.",
-                "<strong>Auth and security:</strong> in-house OAuth 2.0 with Google and LinkedIn replacing Auth0; phone and "
-                "email sign-up; WebSocket auth moved from JWT in the URL to one-time tickets.",
-                "<strong>DevOps:</strong> GitHub Actions deploy of the monitoring stack over Tailscale with SSH keys; "
-                "a Dockerized Telegram reader service behind nginx; n8n through Compose.",
-                "<strong>Agentic development:</strong> introduced spec-driven development with Claude Code and BMAD to the "
-                "team: 80+ specs, tests before code, multi-agent code review.",
-            ],
+            "achievements": [*INBULK_ACHIEVEMENTS, SPEC_BULLET],
         },
         TEKRA_EN,
     ],
-    "extra_experience": EXTRA_EN,
     "projects": [
         {
             "name": "Backend Showcase",
             "period": "2026",
-            "stack": "FastAPI · PostgreSQL · Terraform · GitHub Actions",
+            "stack": "FastAPI · PostgreSQL · LangChain · Docker · Terraform",
             "description": (
-                "REST API for a restaurant chain built to show delivery end to end. CI runs ruff, mypy, import-linter, an "
-                "Alembic round-trip and pytest on a real PostgreSQL; multi-stage Docker images are built once per git tree, "
-                "scanned with Trivy and promoted by digest from GHCR; Terraform provisions the Oracle Cloud VM, network, "
-                "volumes and Object Storage, cloud-init the OS, and the server is replaced, not patched; Caddy with HTTPS; "
-                "deploys over Tailscale through an entrypoint that verifies the commit; an n8n booking simulator; public "
-                "Grafana dashboards over a least-privilege database role; 18 ADRs."
+                "Built alone with AI agents in under a month: a live cloud REST API for a restaurant chain with "
+                "automatic deploys, monitoring and an AI assistant. Reviews stopped real bugs before release, such as "
+                "logins silently dropping their session cookie and a monitoring change that would have kept the "
+                "service down after a crash."
             ),
+            "bullets": [
+                "<strong>API:</strong> FastAPI, async SQLAlchemy and PostgreSQL; table booking where row locks and an "
+                "exclusion constraint prevent double booking; JWT with refresh-token rotation, Google sign-in.",
+                "<strong>AI assistant:</strong> LangChain tool calling on the OpenAI API with answers streamed over "
+                "SSE; it changes bookings only through cards the guest confirms, under a daily spending budget.",
+                "<strong>CI/CD:</strong> GitHub Actions runs linters, type checks, migration checks and pytest on a "
+                "real PostgreSQL; Docker images are built once, security-scanned and promoted by digest; a merge "
+                "deploys with no manual steps.",
+                "<strong>Infrastructure:</strong> Terraform on Oracle Cloud, a Linux server replaced rather than "
+                "patched, HTTPS, Prometheus metrics and public Grafana dashboards, an n8n simulator of guest traffic; "
+                "runs for $0.",
+            ],
             "links": [
-                {"text": "GitHub", "url": SHOWCASE_REPO_URL},
-                {"text": "API docs", "url": SHOWCASE_API_URL},
+                {"text": "Code", "url": SHOWCASE_REPO_URL},
+                {"text": "API", "url": SHOWCASE_API_URL},
                 {"text": "Grafana", "url": SHOWCASE_GRAFANA_URL},
             ],
         },
@@ -98,8 +115,8 @@ RESUME_DATA = {
                 "setting; runs in about 100 MB on Oracle Cloud's free tier. Featured on dev.ua."
             ),
             "links": [
-                {"text": "GitHub", "url": BOT_ALLERT_URL},
-                {"text": "dev.ua article", "url": PRESS_URL},
+                {"text": "Code", "url": BOT_ALLERT_URL},
+                {"text": "Article", "url": PRESS_URL},
             ],
         },
     ],
